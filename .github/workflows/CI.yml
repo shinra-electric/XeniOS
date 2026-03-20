@@ -340,7 +340,7 @@ jobs:
           git config --global http.postBuffer 524288000
 
           # Install dependencies via Homebrew
-          brew install sdl2 ninja pipx
+          brew install sdl2
 
           # Install Qt 6.10.1 via aqtinstall
           if [ '${{ steps.cache-qt-macos.outputs.cache-hit }}' != 'true' ]; then
@@ -582,7 +582,6 @@ jobs:
           git config --global http.postBuffer 524288000
 
           # No SDL2/Qt/Vulkan needed for iOS library builds
-          brew install ninja
 
           # Update submodules (no DirectXShaderCompiler needed for iOS)
           retry git submodule update --init --depth=1 -j$(sysctl -n hw.ncpu) $(grep -oE 'path = .+' .gitmodules | sed 's/path = //' | grep -v 'premake-androidndk\|premake-export-compile-commands\|DirectXShaderCompiler')
@@ -774,7 +773,7 @@ jobs:
           git config --global http.postBuffer 524288000
 
           # Install dependencies via Homebrew
-          brew install sdl2 ninja pipx
+          brew install sdl2
           sdl2_prefix="$(brew --prefix sdl2)"
           echo "SDL2_DIR=$sdl2_prefix" >> "$GITHUB_ENV"
           export SDL2_DIR="$sdl2_prefix"
